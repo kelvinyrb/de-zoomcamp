@@ -19,9 +19,9 @@ services:
     ports:
       - "8080:80"
 
-# This is used to connect this docker-compose to the airflow network create by another docker-compose.yaml  
+## This is used to connect this docker-compose to the airflow network create by another docker-compose.yaml 
 networks:
   airflow:
     name: airflow_default
-    external: true
+    external: truea
     
