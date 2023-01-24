@@ -1,122 +1,132 @@
-### Concepts
+## Week 2 Homework
 
- [Airflow Concepts and Architecture](docs/1_concepts.md)
+In this homework, we'll prepare data for the next week. We'll need
+to put these datasets to our data lake:
 
-### Workflow
+* For the lessons, we'll need the Yellow taxi dataset (years 2019 and 2020)
+* For the homework, we'll need FHV Data (for-hire vehicles, for 2019 only)
 
- ![](docs/gcs_ingestion_dag.png)
- 
-### Setup - Official Version
- (For the section on the Custom/Lightweight setup, scroll down)
+You can find all the URLs on [the dataset page](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
 
- #### Setup
-  [Airflow Setup with Docker, through official guidelines](1_setup_official.md)
 
- #### Execution
- 
-  1. Build the image (only first-time, or when there's any change in the `Dockerfile`, takes ~15 mins for the first-time):
-     ```shell
-     docker-compose build
-     ```
-   
-     or (for legacy versions)
-   
-     ```shell
-     docker build .
-     ```
+In this homework, we will:
 
- 2. Initialize the Airflow scheduler, DB, and other config
-    ```shell
-    docker-compose up airflow-init
-    ```
+* Modify the DAG we created during the lessons for transferring the yellow taxi data
+* Create a new dag for transferring the FHV data
+* Create another dag for the Zones data
 
- 3. Kick up the all the services from the container:
-    ```shell
-    docker-compose up
-    ```
 
- 4. In another terminal, run `docker-compose ps` to see which containers are up & running (there should be 7, matching with the services in your docker-compose file).
+If you don't have access to GCP, you can do that locally and ingest data to Postgres 
+instead. If you have access to GCP, you don't need to do it for local Postgres -
+only if you want.
 
- 5. Login to Airflow web UI on `localhost:8080` with default creds: `airflow/airflow`
+Also note that for this homework we don't need the last step - creating a table in GCP.
+After putting all the files to the datalake, we'll create the tables in Week 3.
 
- 6. Run your DAG on the Web Console.
 
- 7. On finishing your run or to shut down the container/s:
-    ```shell
-    docker-compose down
-    ```
 
-    To stop and delete containers, delete volumes with database data, and download images, run:
-    ```
-    docker-compose down --volumes --rmi all
-    ```
+## Question 1: Start date for the Yellow taxi data (1 point)
 
-    or
-    ```
-    docker-compose down --volumes --remove-orphans
-    ```
-       
-### Setup - Custom No-Frills Version (Lightweight)
-This is a quick, simple & less memory-intensive setup of Airflow that works on a LocalExecutor.
+You'll need to parametrize the DAG for processing the yellow taxi data that
+we created in the videos. 
 
-  #### Setup
-  [Airflow Setup with Docker, customized](2_setup_nofrills.md)
+What should be the start date for this dag?
 
-  #### Execution
-  
-  1. Stop and delete containers, delete volumes with database data, & downloaded images (from the previous setup):
-    ```
-    docker-compose down --volumes --rmi all
-    ```
+* 2019-01-01
+* 2020-01-01
+* 2021-01-01
+* days_ago(1)
 
-   or
-    ```
-    docker-compose down --volumes --remove-orphans
-    ```
-    
-   Or, if you need to clear your system of any pre-cached Docker issues:
-    ```
-    docker system prune
-    ```
-    
-   Also, empty the airflow `logs` directory.
-    
-  2. Build the image (only first-time, or when there's any change in the `Dockerfile`):
-  Takes ~5-10 mins for the first-time
-    ```shell
-    docker-compose build
-    ```
-    or (for legacy versions)
-    ```shell
-    docker build .
-    ```
+2019-01-01
 
-  3. Kick up the all the services from the container (no need to specially initialize):
-    ```shell
-    docker-compose -f docker-compose-nofrills.yml up
-    ```
+## Question 2: Frequency for the Yellow taxi data (1 point)
 
-  4. In another terminal, run `docker ps` to see which containers are up & running (there should be 3, matching with the services in your docker-compose file).
+How often do we need to run this DAG?
 
-  5. Login to Airflow web UI on `localhost:8080` with creds: `admin/admin` (explicit creation of admin user was required)
+* Daily
+* Monthly
+* Yearly
+* Once
 
-  6. Run your DAG on the Web Console.
+Monthly
 
-  7. On finishing your run or to shut down the container/s:
-    ```shell
-    docker-compose down
-    ```
-    
-### Setup - Taken from DE Zoomcamp 2.3.4 - Optional: Lightweight Local Setup for Airflow
 
-Use the docker-compose_2.3.4.yaml file (and rename it to docker-compose.yaml). Don't forget to replace the variables `GCP_PROJECT_ID` and `GCP_GCS_BUCKET`.
+## Re-running the DAGs for past dates
 
-### Future Enhancements
-* Deploy self-hosted Airflow setup on Kubernetes cluster, or use a Managed Airflow (Cloud Composer) service by GCP
+To execute your DAG for past dates, try this:
 
-### References
-For more info, check out these official docs:
-   * https://airflow.apache.org/docs/apache-airflow/stable/start/docker.html
-   * https://airflow.apache.org/docs/docker-stack/build.html
-   * https://airflow.apache.org/docs/docker-stack/recipes.html
+* First, delete your DAG from the web interface (the bin icon)
+* Set the `catchup` parameter to `True`
+* Be careful with running a lot of jobs in parallel - your system may not like it. Don't set it higher than 3: `max_active_runs=3`
+* Rename the DAG to something like `data_ingestion_gcs_dag_v02` 
+* Execute it from the Airflow GUI (the play button)
 
+
+Also, there's no data for the recent months, but `curl` will exit successfully.
+To make it fail on 404, add the `-f` flag:
+
+```bash
+curl -sSLf { URL } > { LOCAL_PATH }
+```
+
+When you run this for all the data, the temporary files will be saved in Docker and will consume your 
+disk space. If it causes problems for you, add another step in your DAG that cleans everything up.
+It could be a bash operator that runs this command:
+
+```bash
+rm name-of-csv-file.csv name-of-parquet-file.parquet
+```
+
+
+## Question 3: DAG for FHV Data (2 points)
+
+Now create another DAG - for uploading the FHV data. 
+
+We will need three steps: 
+
+* Download the data
+* Parquetize it 
+* Upload to GCS
+
+If you don't have a GCP account, for local ingestion you'll need two steps:
+
+* Download the data
+* Ingest to Postgres
+
+Use the same frequency and the start date as for the yellow taxi dataset
+
+Question: how many DAG runs are green for data in 2019 after finishing everything? 
+
+Note: when processing the data for 2020-01 you probably will get an error. It's up 
+to you to decide what to do with it - for Week 3 homework we won't need 2020 data.
+
+12 green DAG runs
+
+
+## Question 4: DAG for Zones (2 points)
+
+
+Create the final DAG - for Zones:
+
+* Download it
+* Parquetize 
+* Upload to GCS
+
+(Or two steps for local ingestion: download -> ingest to postgres)
+
+How often does it need to run?
+
+* Daily
+* Monthly
+* Yearly
+* Once
+
+Once
+
+
+## Submitting the solutions
+
+* Form for submitting: https://forms.gle/ViWS8pDf2tZD4zSu5
+* You can submit your homework multiple times. In this case, only the last submission will be used. 
+
+Deadline: February 7, 17:00 CET 
