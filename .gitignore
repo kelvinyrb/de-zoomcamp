@@ -1,0 +1,4 @@
+week_1/ny_taxi_postgres_data/
+week_2/airflow/.ipynb_checkpoints/
+*.csv
+week_2/prefect/ny_taxi_postgres_data/
