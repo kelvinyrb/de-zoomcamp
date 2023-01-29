@@ -1,0 +1,46 @@
+[2023-01-28 01:04:48,308] {taskinstance.py:1032} INFO - Dependencies all met for <TaskInstance: data_ingestion_gcs_dag.local_to_gcs_task scheduled__2019-05-01T00:00:00+00:00 [queued]>
+[2023-01-28 01:04:48,319] {taskinstance.py:1032} INFO - Dependencies all met for <TaskInstance: data_ingestion_gcs_dag.local_to_gcs_task scheduled__2019-05-01T00:00:00+00:00 [queued]>
+[2023-01-28 01:04:48,321] {taskinstance.py:1238} INFO - 
+--------------------------------------------------------------------------------
+[2023-01-28 01:04:48,322] {taskinstance.py:1239} INFO - Starting attempt 1 of 2
+[2023-01-28 01:04:48,322] {taskinstance.py:1240} INFO - 
+--------------------------------------------------------------------------------
+[2023-01-28 01:04:48,333] {taskinstance.py:1259} INFO - Executing <Task(PythonOperator): local_to_gcs_task> on 2019-05-01 00:00:00+00:00
+[2023-01-28 01:04:48,338] {standard_task_runner.py:52} INFO - Started process 1831 to run task
+[2023-01-28 01:04:48,342] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'data_ingestion_gcs_dag', 'local_to_gcs_task', 'scheduled__2019-05-01T00:00:00+00:00', '--job-id', '84', '--raw', '--subdir', 'DAGS_FOLDER/data_ingestion_gcs_dag.py', '--cfg-path', '/tmp/tmpbqeea3df', '--error-file', '/tmp/tmpozayndmp']
+[2023-01-28 01:04:48,343] {standard_task_runner.py:77} INFO - Job 84: Subtask local_to_gcs_task
+[2023-01-28 01:04:48,405] {logging_mixin.py:109} INFO - Running <TaskInstance: data_ingestion_gcs_dag.local_to_gcs_task scheduled__2019-05-01T00:00:00+00:00 [running]> on host adbf820de9e6
+[2023-01-28 01:04:48,450] {logging_mixin.py:109} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/context.py:152 AirflowContextDeprecationWarning: Accessing 'execution_date' from the template is deprecated and will be removed in a future version. Please use 'data_interval_start' or 'logical_date' instead.
+[2023-01-28 01:04:48,471] {taskinstance.py:1426} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=data_ingestion_gcs_dag
+AIRFLOW_CTX_TASK_ID=local_to_gcs_task
+AIRFLOW_CTX_EXECUTION_DATE=2019-05-01T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2019-05-01T00:00:00+00:00
+[2023-01-28 01:06:37,337] {python.py:175} INFO - Done. Returned value was: None
+[2023-01-28 01:06:37,355] {taskinstance.py:1277} INFO - Marking task as SUCCESS. dag_id=data_ingestion_gcs_dag, task_id=local_to_gcs_task, execution_date=20190501T000000, start_date=20230128T010448, end_date=20230128T010637
+[2023-01-28 01:06:37,410] {local_task_job.py:154} INFO - Task exited with return code 0
+[2023-01-28 01:06:37,449] {local_task_job.py:264} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2023-01-29 12:43:11,992] {taskinstance.py:1032} INFO - Dependencies all met for <TaskInstance: data_ingestion_gcs_dag.local_to_gcs_task scheduled__2019-05-01T00:00:00+00:00 [queued]>
+[2023-01-29 12:43:12,007] {taskinstance.py:1032} INFO - Dependencies all met for <TaskInstance: data_ingestion_gcs_dag.local_to_gcs_task scheduled__2019-05-01T00:00:00+00:00 [queued]>
+[2023-01-29 12:43:12,008] {taskinstance.py:1238} INFO - 
+--------------------------------------------------------------------------------
+[2023-01-29 12:43:12,009] {taskinstance.py:1239} INFO - Starting attempt 1 of 2
+[2023-01-29 12:43:12,009] {taskinstance.py:1240} INFO - 
+--------------------------------------------------------------------------------
+[2023-01-29 12:43:12,020] {taskinstance.py:1259} INFO - Executing <Task(PythonOperator): local_to_gcs_task> on 2019-05-01 00:00:00+00:00
+[2023-01-29 12:43:12,026] {standard_task_runner.py:52} INFO - Started process 6882 to run task
+[2023-01-29 12:43:12,030] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'data_ingestion_gcs_dag', 'local_to_gcs_task', 'scheduled__2019-05-01T00:00:00+00:00', '--job-id', '397', '--raw', '--subdir', 'DAGS_FOLDER/data_ingestion_gcs_dag.py', '--cfg-path', '/tmp/tmp3wpt686l', '--error-file', '/tmp/tmpv705d7do']
+[2023-01-29 12:43:12,031] {standard_task_runner.py:77} INFO - Job 397: Subtask local_to_gcs_task
+[2023-01-29 12:43:12,108] {logging_mixin.py:109} INFO - Running <TaskInstance: data_ingestion_gcs_dag.local_to_gcs_task scheduled__2019-05-01T00:00:00+00:00 [running]> on host 2530f37057aa
+[2023-01-29 12:43:12,155] {logging_mixin.py:109} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/context.py:152 AirflowContextDeprecationWarning: Accessing 'execution_date' from the template is deprecated and will be removed in a future version. Please use 'data_interval_start' or 'logical_date' instead.
+[2023-01-29 12:43:12,176] {taskinstance.py:1426} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=data_ingestion_gcs_dag
+AIRFLOW_CTX_TASK_ID=local_to_gcs_task
+AIRFLOW_CTX_EXECUTION_DATE=2019-05-01T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2019-05-01T00:00:00+00:00
+[2023-01-29 12:43:25,635] {python.py:175} INFO - Done. Returned value was: None
+[2023-01-29 12:43:25,652] {taskinstance.py:1277} INFO - Marking task as SUCCESS. dag_id=data_ingestion_gcs_dag, task_id=local_to_gcs_task, execution_date=20190501T000000, start_date=20230129T124311, end_date=20230129T124325
+[2023-01-29 12:43:25,687] {local_task_job.py:154} INFO - Task exited with return code 0
+[2023-01-29 12:43:25,718] {local_task_job.py:264} INFO - 1 downstream tasks scheduled from follow-on schedule check

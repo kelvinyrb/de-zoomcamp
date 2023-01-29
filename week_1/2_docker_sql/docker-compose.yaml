@@ -23,5 +23,4 @@ services:
 networks:
   airflow:
     name: airflow_default
-    external: truea
-    
+    external: true

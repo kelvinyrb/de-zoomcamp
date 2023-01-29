@@ -1,0 +1,22 @@
+[2023-01-29 08:03:12,253] {taskinstance.py:1032} INFO - Dependencies all met for <TaskInstance: data_ingestion_fhv_dag.bq_fhv_external_table_task scheduled__2019-01-01T00:00:00+00:00 [queued]>
+[2023-01-29 08:03:12,275] {taskinstance.py:1032} INFO - Dependencies all met for <TaskInstance: data_ingestion_fhv_dag.bq_fhv_external_table_task scheduled__2019-01-01T00:00:00+00:00 [queued]>
+[2023-01-29 08:03:12,276] {taskinstance.py:1238} INFO - 
+--------------------------------------------------------------------------------
+[2023-01-29 08:03:12,278] {taskinstance.py:1239} INFO - Starting attempt 17 of 18
+[2023-01-29 08:03:12,279] {taskinstance.py:1240} INFO - 
+--------------------------------------------------------------------------------
+[2023-01-29 08:03:12,296] {taskinstance.py:1259} INFO - Executing <Task(BigQueryCreateExternalTableOperator): bq_fhv_external_table_task> on 2019-01-01 00:00:00+00:00
+[2023-01-29 08:03:12,305] {standard_task_runner.py:52} INFO - Started process 11200 to run task
+[2023-01-29 08:03:12,314] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'data_ingestion_fhv_dag', 'bq_fhv_external_table_task', 'scheduled__2019-01-01T00:00:00+00:00', '--job-id', '291', '--raw', '--subdir', 'DAGS_FOLDER/data_ingestion_fhv_dag.py', '--cfg-path', '/tmp/tmpakt2lnaz', '--error-file', '/tmp/tmpz8857xrk']
+[2023-01-29 08:03:12,322] {standard_task_runner.py:77} INFO - Job 291: Subtask bq_fhv_external_table_task
+[2023-01-29 08:03:12,409] {logging_mixin.py:109} INFO - Running <TaskInstance: data_ingestion_fhv_dag.bq_fhv_external_table_task scheduled__2019-01-01T00:00:00+00:00 [running]> on host 066784a7791c
+[2023-01-29 08:03:12,475] {taskinstance.py:1426} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=data_ingestion_fhv_dag
+AIRFLOW_CTX_TASK_ID=bq_fhv_external_table_task
+AIRFLOW_CTX_EXECUTION_DATE=2019-01-01T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2019-01-01T00:00:00+00:00
+[2023-01-29 08:03:12,477] {crypto.py:82} WARNING - empty cryptography key - values will not be stored encrypted.
+[2023-01-29 08:03:13,412] {taskinstance.py:1277} INFO - Marking task as SUCCESS. dag_id=data_ingestion_fhv_dag, task_id=bq_fhv_external_table_task, execution_date=20190101T000000, start_date=20230129T080312, end_date=20230129T080313
+[2023-01-29 08:03:13,506] {local_task_job.py:154} INFO - Task exited with return code 0
+[2023-01-29 08:03:13,538] {local_task_job.py:264} INFO - 1 downstream tasks scheduled from follow-on schedule check

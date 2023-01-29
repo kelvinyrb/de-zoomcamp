@@ -1,0 +1,24 @@
+[2023-01-29 13:29:50,215] {taskinstance.py:1032} INFO - Dependencies all met for <TaskInstance: data_ingestion_fhv_dag.bq_create_fhv_partitioned_clustered_table_task scheduled__2019-11-01T00:00:00+00:00 [queued]>
+[2023-01-29 13:29:50,230] {taskinstance.py:1032} INFO - Dependencies all met for <TaskInstance: data_ingestion_fhv_dag.bq_create_fhv_partitioned_clustered_table_task scheduled__2019-11-01T00:00:00+00:00 [queued]>
+[2023-01-29 13:29:50,232] {taskinstance.py:1238} INFO - 
+--------------------------------------------------------------------------------
+[2023-01-29 13:29:50,232] {taskinstance.py:1239} INFO - Starting attempt 1 of 2
+[2023-01-29 13:29:50,233] {taskinstance.py:1240} INFO - 
+--------------------------------------------------------------------------------
+[2023-01-29 13:29:50,246] {taskinstance.py:1259} INFO - Executing <Task(BigQueryInsertJobOperator): bq_create_fhv_partitioned_clustered_table_task> on 2019-11-01 00:00:00+00:00
+[2023-01-29 13:29:50,251] {standard_task_runner.py:52} INFO - Started process 2475 to run task
+[2023-01-29 13:29:50,259] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'data_ingestion_fhv_dag', 'bq_create_fhv_partitioned_clustered_table_task', 'scheduled__2019-11-01T00:00:00+00:00', '--job-id', '519', '--raw', '--subdir', 'DAGS_FOLDER/data_ingestion_fhv_dag.py', '--cfg-path', '/tmp/tmp46w1vsq2', '--error-file', '/tmp/tmp5avkjju4']
+[2023-01-29 13:29:50,261] {standard_task_runner.py:77} INFO - Job 519: Subtask bq_create_fhv_partitioned_clustered_table_task
+[2023-01-29 13:29:50,332] {logging_mixin.py:109} INFO - Running <TaskInstance: data_ingestion_fhv_dag.bq_create_fhv_partitioned_clustered_table_task scheduled__2019-11-01T00:00:00+00:00 [running]> on host 2530f37057aa
+[2023-01-29 13:29:50,396] {taskinstance.py:1426} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=data_ingestion_fhv_dag
+AIRFLOW_CTX_TASK_ID=bq_create_fhv_partitioned_clustered_table_task
+AIRFLOW_CTX_EXECUTION_DATE=2019-11-01T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2019-11-01T00:00:00+00:00
+[2023-01-29 13:29:50,398] {crypto.py:82} WARNING - empty cryptography key - values will not be stored encrypted.
+[2023-01-29 13:29:50,406] {logging_mixin.py:109} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/context.py:152 AirflowContextDeprecationWarning: Accessing 'execution_date' from the template is deprecated and will be removed in a future version. Please use 'data_interval_start' or 'logical_date' instead.
+[2023-01-29 13:29:50,414] {bigquery.py:1637} INFO - Inserting job ***_data_ingestion_fhv_dag_bq_create_fhv_partitioned_clustered_table_task_2019_11_01T00_00_00_00_00_31f7cefc945d74b8ba9d8131977a866e
+[2023-01-29 13:30:14,918] {taskinstance.py:1277} INFO - Marking task as SUCCESS. dag_id=data_ingestion_fhv_dag, task_id=bq_create_fhv_partitioned_clustered_table_task, execution_date=20191101T000000, start_date=20230129T132950, end_date=20230129T133014
+[2023-01-29 13:30:14,982] {local_task_job.py:154} INFO - Task exited with return code 0
+[2023-01-29 13:30:15,015] {local_task_job.py:264} INFO - 0 downstream tasks scheduled from follow-on schedule check
