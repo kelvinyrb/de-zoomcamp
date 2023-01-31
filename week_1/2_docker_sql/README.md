@@ -173,6 +173,7 @@ FROM
 	cte
 GROUP BY passenger_count
 ```
+Long Island City/Queens Plaza
 
 ## Submitting the solutions
 
