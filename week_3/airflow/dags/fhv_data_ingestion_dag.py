@@ -75,7 +75,7 @@ default_args = {
 
 # NOTE: DAG declaration - using a Context Manager (an implicit way)
 with DAG(
-    dag_id="data_ingestion_gcs_dag",
+    dag_id="fhv_data_ingestion_dag",
     default_args=default_args,
     schedule_interval="@monthly",
     catchup= True,
