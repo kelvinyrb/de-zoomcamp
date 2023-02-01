@@ -1,3 +1,4 @@
 week_2/airflow/logs
+week_2/prefect/flows/04_homework/*.parquet
 week_3/airflow/logs
 week_3/extras/*.parquet
