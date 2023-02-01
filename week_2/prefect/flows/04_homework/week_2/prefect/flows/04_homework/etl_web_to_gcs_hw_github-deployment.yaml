@@ -3,7 +3,7 @@
 ###
 name: Web to GCS Flow (HW-GitHub)
 description: The main ETL function
-version: 068b15957fe2288c4f3aeaee0dfe0b2f
+version: 9829ebd78178b999c26c905b42e194a9
 # The work queue that will handle this deployment's runs
 work_queue_name: default
 tags: []
@@ -33,8 +33,8 @@ storage:
   repository: https://github.com/kelvinyrb/de-zoomcamp.git
   reference: null
   access_token: null
-  _block_document_id: e88b025c-c065-4d8a-888c-556208d3ea37
-  _block_document_name: github-block-subdir
+  _block_document_id: 025643fa-024d-4603-8673-52291c2cac9d
+  _block_document_name: github-block
   _is_anonymous: false
   block_type_slug: github
   _block_type_slug: github

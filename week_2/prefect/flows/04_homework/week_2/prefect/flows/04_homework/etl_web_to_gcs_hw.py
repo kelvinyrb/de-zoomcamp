@@ -6,9 +6,9 @@ from random import randint
 from prefect.filesystems import GitHub
 
 # Create GitHub repo connection
-github_block = GitHub.load("github-block")
-github_block.get_directory("week_2/prefect/flows/04_homework")
-github_block.save("github-block-subdir", overwrite=True)
+# github_block = GitHub.load("github-block")
+# github_block.save("github-storage-block", overwrite=True)
+# github_block.get_directory()
 
 @task(retries=3)
 def fetch(dataset_url: str) -> pd.DataFrame:
