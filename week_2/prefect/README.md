@@ -108,16 +108,17 @@ github_block = GitHub.load("github-storage-block")
 ```
 ### Build, apply and run deployment
 ```bash
-prefect deployment build ./etl_web_to_gcs_hw.py:etl_web_to_gcs_hw -n "Web to GCS Flow (HW-GitHub)" -sb github/github-storage-block --path "week_2/prefect/flows/04_homework" -o etl_web_to_gcs_hw_github-deployment.yaml
+prefect deployment build ./etl_web_to_gcs_hw.py:etl_web_to_gcs_hw -n "Web to GCS Flow (HW-GitHub)" -sb github/github-block --path "week_2/prefect/flows/04_homework" -o etl_web_to_gcs_hw_github-deployment.yaml
 prefect deployment apply etl_web_to_gcs_hw_github-deployment.yaml
 prefect agent start --work-queue "default" 
 ```
 Click Deployments> Your Deployment > Run > Quick Run
 
-### When the file is not in the repo
+### Error
 `FileNotFoundError: [Errno 2] No such file or directory: '/var/folders/7q/dxlqdfn930v7v6fk4g6wfntm0000gq/T/tmp59ym0a91prefect/week_2/prefect/flows/04_homework'`
+`FileNotFoundError: [Errno 2] No such file or directory: '/var/folders/7q/dxlqdfn930v7v6fk4g6wfntm0000gq/T/tmpymmz3ni8prefect/week_2/prefect/flows/04_homewor'`
 
-### When tyhe file is in the repo
+### When the file is in the repo
 
 ## Question 5. Email or Slack notifications
 

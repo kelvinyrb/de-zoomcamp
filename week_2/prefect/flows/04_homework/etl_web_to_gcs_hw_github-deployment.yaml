@@ -3,13 +3,19 @@
 ###
 name: Web to GCS Flow (HW-GitHub)
 description: The main ETL function
-version: 4fae34904994e4f60d02c91ef126a34e
+version: 9829ebd78178b999c26c905b42e194a9
 # The work queue that will handle this deployment's runs
 work_queue_name: default
 tags: []
 parameters: {}
 schedule: null
 infra_overrides: {}
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: etl-web-to-gcs-hw
+manifest_path: null
 infrastructure:
   type: process
   env: {}
@@ -18,24 +24,21 @@ infrastructure:
   command: null
   stream_output: true
   working_dir: null
+  _block_document_id: ba9ca967-5178-456b-90a4-5b53b9eaf421
+  _block_document_name: anonymous-30160649-ab12-41cf-8cad-ec506bddd663
+  _is_anonymous: true
   block_type_slug: process
   _block_type_slug: process
-
-###
-### DO NOT EDIT BELOW THIS LINE
-###
-flow_name: etl-web-to-gcs-hw
-manifest_path: null
 storage:
   repository: https://github.com/kelvinyrb/de-zoomcamp.git
   reference: null
   access_token: null
-  _block_document_id: 4aae2663-9fa3-4871-8db8-a55684cd1048
-  _block_document_name: github-storage-block
+  _block_document_id: 025643fa-024d-4603-8673-52291c2cac9d
+  _block_document_name: github-block
   _is_anonymous: false
   block_type_slug: github
   _block_type_slug: github
-path: week_2/prefect/flows/04_homework
+path: ''
 entrypoint: etl_web_to_gcs_hw.py:etl_web_to_gcs_hw
 parameter_openapi_schema:
   title: Parameters
