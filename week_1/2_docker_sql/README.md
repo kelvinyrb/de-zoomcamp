@@ -1,4 +1,4 @@
-## Week 1 Homework
+## Week 1 Homework (Answers checked)
 
 In this homework we'll prepare the environment 
 and practice with Docker and SQL
