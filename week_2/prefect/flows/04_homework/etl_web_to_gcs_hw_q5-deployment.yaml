@@ -1,9 +1,9 @@
 ###
 ### A complete description of a Prefect Deployment for flow 'etl-web-to-gcs-hw'
 ###
-name: GitHub Storage Flow
+name: Question 5 Flow
 description: The main ETL function
-version: 57e9d238fac4a495f383b7f9cb59006d
+version: 0ece38017902d414c109edbb440840a6
 # The work queue that will handle this deployment's runs
 work_queue_name: default
 tags: []
@@ -26,17 +26,9 @@ infrastructure:
 ###
 flow_name: etl-web-to-gcs-hw
 manifest_path: null
-storage:
-  repository: https://github.com/kelvinyrb/de-zoomcamp.git
-  reference: null
-  access_token: null
-  _block_document_id: f51f55e9-1d9c-4744-8825-768f26ee5446
-  _block_document_name: github-block
-  _is_anonymous: false
-  block_type_slug: github
-  _block_type_slug: github
-path: ''
-entrypoint: week_2/prefect/flows/04_homework/etl_web_to_gcs_hw.py:etl_web_to_gcs_hw
+storage: null
+path: /Users/kelvinye/Documents/de-zoomcamp/week_2/prefect/flows/04_homework
+entrypoint: etl_web_to_gcs_hw.py:etl_web_to_gcs_hw
 parameter_openapi_schema:
   title: Parameters
   type: object

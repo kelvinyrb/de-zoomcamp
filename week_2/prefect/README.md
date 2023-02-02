@@ -109,11 +109,11 @@ github_block = GitHub.load("github-storage-block")
 ### Build, apply and run deployment
 ```bash
 
-prefect deployment build ./etl_web_to_gcs_hw.py:etl_web_to_gcs_hw -n "Web to GCS Flow (HW-GitHub)" -sb github/github-block --path week_2/prefect/flows/04_homework -o etl_web_to_gcs_hw_github-deployment.yaml --apply
+prefect deployment build ./etl_web_to_gcs_hw.py:etl_web_to_gcs_hw -n "Web to GCS Flow (HW-GitHub)" -sb github/github-block --path /week_2/prefect/flows/04_homework -o etl_web_to_gcs_hw_github-deployment.yaml --apply
 
-prefect deployment build -n "Web to GCS Flow (HW-GitHub)" -sb github/github-block -o etl_web_to_gcs_hw_github-deployment.yaml ./week_2/prefect/flows/04_homework/etl_web_to_gcs_hw.py:etl_web_to_gcs_hw --apply
+prefect deployment build ./week_2/prefect/flows/04_homework/etl_web_to_gcs_hw.py:etl_web_to_gcs_hw -n "Web to GCS Flow (HW-GitHub)" -sb github/github-block -o etl_web_to_gcs_hw_github-deployment.yaml --apply
 
-prefect deployment apply etl_web_to_gcs_hw_github-deployment.yaml
+prefect deployment build ./etl_web_to_gcs_hw.py:etl_web_to_gcs_hw -n "Web to GCS Flow (HW-GitHub)" -sb github/github-block/week_2/prefect/flows/04_homework/ -o etl_web_to_gcs_hw_github-deployment.yaml --apply
 
 prefect agent start --work-queue "default" 
 ```
@@ -153,6 +153,20 @@ How many rows were processed by the script?
 - `728,390`
 - `514,392`
 
+```bash
+prefect cloud login
+prefect deployment build ./etl_web_to_gcs_hw.py:etl_web_to_gcs_hw -n "Question 5 Flow" --apply -o etl_web_to_gcs_hw_q5-deployment.yaml 
+```
+### Set up Slack notification on Prefect Orion UI.
+Create Slack App (via browser) and connect it to workspace and channel and output will be an incoming webhook
+Paste this incoming webhook to the Slack Notification on Prefect Orion. 
+https://hooks.slack.com/services/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
+
+### Set up email notification on Prefect Cloud UI.
+
+*Once you're connected to Prefect Cloud, it seems that the deployments will only show on Prefect Cloud UI and not on Prefect Orion UI.*
+
+Answer: 514392
 
 ## Question 6. Secrets
 
