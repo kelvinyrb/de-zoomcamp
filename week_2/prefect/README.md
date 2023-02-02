@@ -21,7 +21,8 @@ prefect config set PREFECT_API_URL=http://127.0.0.1:4200/api
 python etl_web_to_gcs_hw.py
 ```
 `clean` function prints the number of rows. 
-447770
+
+Answer: 447770
 
 ## Question 2. Scheduling with Cron
 
@@ -44,7 +45,7 @@ How to schedule:
 Click on your deployment > Edit > Add schedule OR
 `prefect deployment build ./etl_web_to_gcs_hw.py:etl_web_to_gcs_hw -n "Web to GCS Flow (HW) --cron "0 5 1 * *" -a`
 
-`0 5 1 * *`
+Answer: `0 5 1 * *`
 
 
 ## Question 3. Loading data to BigQuery 
@@ -78,7 +79,7 @@ Total number of processed rows: 7019375
 2019-03 (yellow)
 Total number of processed rows: 7832545
 
-Total number of processed rows for 2019-02 and 2019-03: 14,851,920
+Answer: Total number of processed rows for 2019-02 and 2019-03: 14,851,920
 
 ## Question 4. Github Storage Block
 
@@ -102,26 +103,23 @@ prefect block register -m prefect_github
 ```
 
 ### Create a GitHub block on Prefect Orion
-```bash
-from prefect.filesystems import GitHub
-github_block = GitHub.load("github-storage-block")
-```
+Paste repo url in github block
+
 ### Build, apply and run deployment
 ```bash
-
-prefect deployment build ./etl_web_to_gcs_hw.py:etl_web_to_gcs_hw -n "Web to GCS Flow (HW-GitHub)" -sb github/github-block --path /week_2/prefect/flows/04_homework -o etl_web_to_gcs_hw_github-deployment.yaml --apply
-
-prefect deployment build ./week_2/prefect/flows/04_homework/etl_web_to_gcs_hw.py:etl_web_to_gcs_hw -n "Web to GCS Flow (HW-GitHub)" -sb github/github-block -o etl_web_to_gcs_hw_github-deployment.yaml --apply
-
-prefect deployment build ./etl_web_to_gcs_hw.py:etl_web_to_gcs_hw -n "Web to GCS Flow (HW-GitHub)" -sb github/github-block/week_2/prefect/flows/04_homework/ -o etl_web_to_gcs_hw_github-deployment.yaml --apply
-
 prefect agent start --work-queue "default" 
+prefect deployment build ./week_2/prefect/flows/04_homework/etl_web_to_gcs_hw.py:etl_web_to_gcs_hw \
+-n "GitHub Storage Flow" \
+-sb github/github-block \
+-o ./week_2/prefect/flows/04_homework/etl_web_to_gcs_hw_github-deployment.yaml \
+--apply
 ```
-Click Deployments> Your Deployment > Run > Quick Run
 
-### Error
-`FileNotFoundError: [Errno 2] No such file or directory: '/var/folders/7q/dxlqdfn930v7v6fk4g6wfntm0000gq/T/tmp59ym0a91prefect/week_2/prefect/flows/04_homework'`
-`FileNotFoundError: [Errno 2] No such file or directory: '/var/folders/7q/dxlqdfn930v7v6fk4g6wfntm0000gq/T/tmpymmz3ni8prefect/week_2/prefect/flows/04_homewor'`
+Click Deployments > Your Deployment > Run > Quick Run
+
+*Note: prefect deployment build gave an error when there was airflow/logs/ in the github repo for unknown reason, delete before build to fix*
+
+Answer: 88605
 
 ### When the file is in the repo
 
@@ -145,7 +143,6 @@ Test the functionality.
 
 Alternatively, you can grab the webhook URL from your own Slack workspace and Slack App that you create. 
 
-
 How many rows were processed by the script?
 
 - `125,268`
@@ -153,16 +150,41 @@ How many rows were processed by the script?
 - `728,390`
 - `514,392`
 
-```bash
-prefect cloud login
-prefect deployment build ./etl_web_to_gcs_hw.py:etl_web_to_gcs_hw -n "Question 5 Flow" --apply -o etl_web_to_gcs_hw_q5-deployment.yaml 
-```
 ### Set up Slack notification on Prefect Orion UI.
 Create Slack App (via browser) and connect it to workspace and channel and output will be an incoming webhook
 Paste this incoming webhook to the Slack Notification on Prefect Orion. 
 https://hooks.slack.com/services/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
+Run the targeted flow.
+
+This notification was triggered on slack channel
+test-notify-app `APP`
+```
+Prefect flow run notification
+Flow run etl-web-to-gcs-hw/tourmaline-boa entered state Completed at 2023-02-02T06:30:25.455427+00:00.
+Flow ID: a7de22d4-1828-41d8-a4ec-d68a9b8e187f
+Flow run ID: 75b4eccb-aa0a-407d-a093-4becfe69c731
+Flow run URL: http://127.0.0.1:4200/flow-runs/flow-run/75b4eccb-aa0a-407d-a093-4becfe69c731
+State message: All states completed.
+```
 
 ### Set up email notification on Prefect Cloud UI.
+```bash
+prefect cloud login
+prefect block register -m prefect_gcp
+```
+Create GCP Credentials Block on Prefect Cloud but GCP Bucket Block is built in `etl_web_to_gcs_hw_q5.py`
+`prefect deployment build ./etl_web_to_gcs_hw_q5.py:etl_web_to_gcs_hw -n "web_to_gcs_hw_q5_flow" --apply -o etl_web_to_gcs_hw_q5-deployment.yaml`
+`prefect agent start -q 'default'`
+Prefect Cloud: Click Deployments > Your Deployment > Run > Quick Run
+
+Email notification from: no-reply@prefect.io
+```
+Flow run etl-web-to-gcs-hw/pygmy-caracal entered state `Completed` at 2023-02-02T13:11:14.248460+00:00.
+Flow ID: 2b4efee0-f4ab-44c8-8e0d-c3afe677b47d
+Flow run ID: b0a0b5d9-9772-41a4-9cd2-683061084e99
+Flow run URL: https://app.prefect.cloud/account/0f414be3-3ec3-4ab0-9e6e-2c81cbee86c4/workspace/7c19bdd8-4a12-4e42-b1d3-e7ee66029510/flow-runs/flow-run/b0a0b5d9-9772-41a4-9cd2-683061084e99
+State message: All states completed.
+```
 
 *Once you're connected to Prefect Cloud, it seems that the deployments will only show on Prefect Cloud UI and not on Prefect Orion UI.*
 
@@ -177,15 +199,11 @@ Prefect Secret blocks provide secure, encrypted storage in the database and obfu
 - 8
 - 10
 
-
+`********`
+Answer: 8
 ## Submitting the solutions
 
-* Form for submitting: TODO
+* Form for submitting: https://docs.google.com/forms/d/e/1FAIpQLSf8g4qz6JnHmCPslWK5ZPyjmoK6DtRK_5vLCO6pqXPscS4b7Q/viewform
 * You can submit your homework multiple times. In this case, only the last submission will be used. 
 
 Deadline: 6 February (Monday), 22:00 CET
-
-
-## Solution
-
-We will publish the solution here

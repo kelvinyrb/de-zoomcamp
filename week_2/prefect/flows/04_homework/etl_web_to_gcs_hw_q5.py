@@ -2,6 +2,13 @@ from pathlib import Path
 import pandas as pd
 from prefect import flow, task
 from prefect_gcp.cloud_storage import GcsBucket
+from prefect_gcp import GcpCredentials
+
+bucket_name = "prefect-de-zoomcamp-3482"
+gcp_credentials_block = GcpCredentials.load("zoom-gcp-creds")
+# Create GcsBucket in code instead of using Prefect Cloud because UI is missing gcp_credentials dropdrown field (UI bug)
+GcsBucket(bucket=bucket_name, gcp_credentials=gcp_credentials_block).save("gcs-bucket-block", overwrite=True)
+
 from random import randint
 
 @task(retries=3)
@@ -36,7 +43,7 @@ def write_local(df: pd.DataFrame, color: str, dataset_file: str) -> Path:
 @task()
 def write_gcs(path: Path) -> None:
     """Upload local parquet file to GCS"""
-    gcs_block = GcsBucket.load("zoom-gcs")
+    gcs_block = GcsBucket.load("gcs-bucket-block")
     gcs_block.upload_from_path(from_path=path, to_path=path)
     return
 

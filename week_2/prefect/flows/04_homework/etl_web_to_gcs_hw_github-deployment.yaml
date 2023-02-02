@@ -10,6 +10,12 @@ tags: []
 parameters: {}
 schedule: null
 infra_overrides: {}
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: etl-web-to-gcs-hw
+manifest_path: null
 infrastructure:
   type: process
   env: {}
@@ -18,14 +24,11 @@ infrastructure:
   command: null
   stream_output: true
   working_dir: null
+  _block_document_id: 9a0e92f9-c3ca-48c9-9a44-3a6966a7bb20
+  _block_document_name: anonymous-68aafff1-ef3d-47b2-b06d-79aa9e6f4ce8
+  _is_anonymous: true
   block_type_slug: process
   _block_type_slug: process
-
-###
-### DO NOT EDIT BELOW THIS LINE
-###
-flow_name: etl-web-to-gcs-hw
-manifest_path: null
 storage:
   repository: https://github.com/kelvinyrb/de-zoomcamp.git
   reference: null

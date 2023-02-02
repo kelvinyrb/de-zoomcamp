@@ -1,9 +1,9 @@
 ###
 ### A complete description of a Prefect Deployment for flow 'etl-web-to-gcs-hw'
 ###
-name: Question 5 Flow
+name: web_to_gcs_hw_q5_flow
 description: The main ETL function
-version: 0ece38017902d414c109edbb440840a6
+version: fc98e6ca418417abd72270625d751d3d
 # The work queue that will handle this deployment's runs
 work_queue_name: default
 tags: []
@@ -28,7 +28,7 @@ flow_name: etl-web-to-gcs-hw
 manifest_path: null
 storage: null
 path: /Users/kelvinye/Documents/de-zoomcamp/week_2/prefect/flows/04_homework
-entrypoint: etl_web_to_gcs_hw.py:etl_web_to_gcs_hw
+entrypoint: etl_web_to_gcs_hw_q5.py:etl_web_to_gcs_hw
 parameter_openapi_schema:
   title: Parameters
   type: object
