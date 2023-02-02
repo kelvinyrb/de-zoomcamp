@@ -108,14 +108,12 @@ github_block = GitHub.load("github-storage-block")
 ```
 ### Build, apply and run deployment
 ```bash
-prefect deployment build ./etl_web_to_gcs_hw.py:etl_web_to_gcs_hw -n "Web to GCS Flow (HW-GitHub)" -sb github/github-block-subdir -o etl_web_to_gcs_hw_github-deployment.yaml
 
-prefect deployment build -n "Web to GCS Flow (HW-GitHub)" -sb github/github-block -o etl_web_to_gcs_hw_github-deployment.yaml ./week_2/prefect/flows/04_homework/etl_web_to_gcs_hw.py:etl_web_to_gcs_hw
+prefect deployment build ./etl_web_to_gcs_hw.py:etl_web_to_gcs_hw -n "Web to GCS Flow (HW-GitHub)" -sb github/github-block --path week_2/prefect/flows/04_homework -o etl_web_to_gcs_hw_github-deployment.yaml --apply
 
-% prefect deployment build -n etl_github -sb github/github-prefect-storage  ./path/to/your_flow/etl_web_to_gcs.py:etl_web_to_gcs
+prefect deployment build -n "Web to GCS Flow (HW-GitHub)" -sb github/github-block -o etl_web_to_gcs_hw_github-deployment.yaml ./week_2/prefect/flows/04_homework/etl_web_to_gcs_hw.py:etl_web_to_gcs_hw --apply
 
 prefect deployment apply etl_web_to_gcs_hw_github-deployment.yaml
-
 
 prefect agent start --work-queue "default" 
 ```
