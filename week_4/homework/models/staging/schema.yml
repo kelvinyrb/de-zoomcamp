@@ -1,0 +1,45 @@
+
+version: 2
+
+sources:
+    - name: staging
+      database: ny-rides-kelvin
+      schema: trips_data_all
+      # loaded_at_field: record_loaded_at
+      tables:
+        - name: fhv_casted_tripdata
+         # freshness:
+           # error_after: {count: 6, period: hour}
+
+models:
+    - name: stg_fhv_tripdata
+      description: >
+        This data dictionary describes FHV trip data. Each row represents a single trip in an FHV. 
+      columns:
+          - name: dispatching_base_num
+            description: The TLC Base License Number of the base that dispatched the trip
+          - name: pickup_datetime 
+            description: The date and time of the trip pick-up
+          - name: dropoff_datetime 
+            description: The date and time of the trip dropoff
+          - name: PUlocationID 
+            description: TLC Taxi Zone in which the trip began
+          - name: DOlocationID 
+            description: TLC Taxi Zone in which the trip ended
+          - name: SR_Flag
+            description: >
+              Indicates if the trip was a part of a shared ride chain offered by a
+              High Volume FHV company (e.g. Uber Pool, Lyft Line). For shared
+              trips, the value is 1. For non-shared rides, this field is null.
+              NOTE: For most High Volume FHV companies, only shared rides that
+              were requested AND matched to another shared-ride request over
+              the course of the journey are flagged. However, Lyft (base license
+              numbers B02510 + B02844) also flags rides for which a shared ride
+              was requested but another passenger was not successfully matched
+              to share the trip—therefore, trips records with SR_Flag=1 from those
+              two bases could indicate EITHER a first trip in a shared trip chain OR
+              a trip for which a shared ride was requested but never matched.
+              Users should anticipate an overcount of successfully shared trips
+              completed by Lyft. 
+          - name: Affiliated_base_number 
+            description: None
