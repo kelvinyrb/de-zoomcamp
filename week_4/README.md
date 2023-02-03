@@ -30,7 +30,9 @@ GROUP BY EXTRACT(YEAR FROM pickup_datetime)
 LIMIT 10
 ```
 Answer:
+
 2019 - 45991486
+
 2020 - 16464843
 
 ### Question 2: 
@@ -90,5 +92,6 @@ GROUP BY month
 ORDER BY month ASC;
 ```
 https://lookerstudio.google.com/reporting/78d09ea3-7a5f-4ff8-b791-b88c615acf78/page/coMED/edit
+
 Answer: January. 
 
