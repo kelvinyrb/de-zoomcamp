@@ -11,9 +11,13 @@ LIMIT 10
 ```
 
 Output: 43261276 (Total 12 months)
+
 Sanity check other months:
+
 23159064 (Jan)
+
 1707650 (Feb)
+
 2044196 (Dec)
 
 ### Question 2: 
