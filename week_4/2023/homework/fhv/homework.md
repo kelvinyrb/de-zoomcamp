@@ -30,6 +30,11 @@ OPTIONS(
 );
 ``` 
 ``` sql
+-- Create table from external table (yellow)
+CREATE OR REPLACE TABLE ny-rides-kelvin.trips_data_all.yellow_tripdata_2019_2020_table AS
+SELECT * FROM ny-rides-kelvin.trips_data_all.yellow_tripdata_2019_2020;
+```
+``` sql
 -- Create external table from gcs data (green)
 CREATE OR REPLACE EXTERNAL TABLE ny-rides-kelvin.trips_data_all.green_tripdata_2019_2020
 OPTIONS(
@@ -38,11 +43,6 @@ OPTIONS(
 );
 ``` 
 ``` sql
--- Create table from external table (yellow)
-CREATE OR REPLACE TABLE ny-rides-kelvin.trips_data_all.yellow_tripdata_2019_2020_table AS
-SELECT * FROM ny-rides-kelvin.trips_data_all.yellow_tripdata_2019_2020;
-```
-``` sql
 -- Create table from external table (green)
 CREATE OR REPLACE TABLE ny-rides-kelvin.trips_data_all.green_tripdata_2019_2020_table AS
 SELECT * FROM ny-rides-kelvin.trips_data_all.green_tripdata_2019_2020;
@@ -50,7 +50,8 @@ SELECT * FROM ny-rides-kelvin.trips_data_all.green_tripdata_2019_2020;
 
 1. Go to `cloud.getdbt.com`
 2. Set project directory to week_4/2023/homework/greenyellow
-3. dbt build --select +fact_trips --var "is_test_run: false"
+3. `dbt deps`
+4. `dbt build --select +fact_trips --var "is_test_run: false"`
 ``` sql
 SELECT
 EXTRACT(YEAR FROM pickup_datetime),
@@ -68,7 +69,12 @@ LIMIT 10
 - 61648442
 - 71648442
 
-Ans: 
+Ans: 61,602,960
+
+2019: 45691959
+
+2020: 15911001
+
 
 ### Question 2: 
 
@@ -81,7 +87,7 @@ You will need to complete "Visualising the data" videos, either using data studi
 - 76.3/23.7
 - 99.1/0.9
 
-Ans: 
+Ans: 89.8% / 10.2%
 
 
 ### Question 3: 

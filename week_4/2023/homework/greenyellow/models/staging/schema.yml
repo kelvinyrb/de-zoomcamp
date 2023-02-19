@@ -8,8 +8,8 @@ sources:
 
       # loaded_at_field: record_loaded_at
       tables:
-        - name: green_tripdata_2019_2020
-        - name: yellow_tripdata_2019_2020
+        - name: green_tripdata_2019_2020_table
+        - name: yellow_tripdata_2019_2020_table
          # freshness:
            # error_after: {count: 6, period: hour}
 

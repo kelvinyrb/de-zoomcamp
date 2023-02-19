@@ -46,10 +46,10 @@ def web_to_gcs(year, service):
         # csv.gz  file_name 
         file_name = service + '_tripdata_' + year + '-' + month + '.csv.gz'
         
-        # download csv.gz file
-        request_url = init_url + file_name
-        print(request_url)
-        urllib.request.urlretrieve(request_url, '../data/' + file_name)
+        # # download csv.gz file
+        # request_url = init_url + file_name
+        # print(request_url)
+        # urllib.request.urlretrieve(request_url, '../data/' + file_name)
         
         # read it back into a parquet file
         if file_name == 'fhv_tripdata_2020-02.csv.gz':
@@ -57,7 +57,7 @@ def web_to_gcs(year, service):
         else:
             df = pd.read_csv('../data/' + file_name)
             
-        # # Define schema for parquet file
+        # # Define schema for parquet file (FHV)
         # if year == '2019':
         #     schema = pa.schema([
         #         pa.field('dispatching_base_num', pa.string()),
@@ -79,9 +79,56 @@ def web_to_gcs(year, service):
         #         pa.field('SR_Flag', pa.int64()),
         #         pa.field('Affiliated_base_number', pa.string())
         # ])
+        
+        # Define schema for parquet file (green taxi)
+        if service == 'green':
+            schema = pa.schema([
+                pa.field('VendorID', pa.int64()),
+                pa.field('lpep_pickup_datetime', pa.string()),
+                pa.field('lpep_dropoff_datetime', pa.string()),
+                pa.field('store_and_fwd_flag', pa.string()),
+                pa.field('RatecodeID', pa.float64()),
+                pa.field('PULocationID', pa.int64()),
+                pa.field('DOLocationID', pa.int64()),
+                pa.field('passenger_count', pa.float64()),
+                pa.field('trip_distance', pa.float64()),
+                pa.field('fare_amount', pa.float64()),
+                pa.field('extra', pa.float64()),
+                pa.field('mta_tax', pa.float64()),
+                pa.field('tip_amount', pa.float64()),
+                pa.field('tolls_amount', pa.float64()),
+                pa.field('ehail_fee', pa.float64()),
+                pa.field('improvement_surcharge', pa.float64()),
+                pa.field('total_amount', pa.float64()),
+                pa.field('payment_type', pa.float64()),
+                pa.field('trip_type', pa.float64()),
+                pa.field('congestion_surcharge', pa.float64())
+        ])
+        
+        elif service == 'yellow':
+            schema = pa.schema([
+                pa.field('VendorID', pa.int64()),
+                pa.field('tpep_pickup_datetime', pa.string()),
+                pa.field('tpep_dropoff_datetime', pa.string()),
+                pa.field('store_and_fwd_flag', pa.string()),
+                pa.field('RatecodeID', pa.float64()),
+                pa.field('PULocationID', pa.int64()),
+                pa.field('DOLocationID', pa.int64()),
+                pa.field('passenger_count', pa.float64()),
+                pa.field('trip_distance', pa.float64()),
+                pa.field('fare_amount', pa.float64()),
+                pa.field('extra', pa.float64()),
+                pa.field('mta_tax', pa.float64()),
+                pa.field('tip_amount', pa.float64()),
+                pa.field('tolls_amount', pa.float64()),
+                pa.field('improvement_surcharge', pa.float64()),
+                pa.field('total_amount', pa.float64()),
+                pa.field('payment_type', pa.float64()),
+                pa.field('congestion_surcharge', pa.float64())
+        ])
 
         file_name = file_name.replace('.csv.gz', '.parquet')
-        df.to_parquet('..//data/' + file_name, engine='pyarrow')
+        df.to_parquet('..//data/' + file_name, engine='pyarrow', schema=schema)
         print(f"Parquet: {file_name}")
 
         # upload it to gcs 
@@ -89,10 +136,10 @@ def web_to_gcs(year, service):
         print(f"GCS: {service}_parquet/{file_name}")
 
 
-web_to_gcs('2019', 'green')
-web_to_gcs('2020', 'green')
-# web_to_gcs('2019', 'yellow')
-# web_to_gcs('2020', 'yellow')
+# web_to_gcs('2019', 'green')
+# web_to_gcs('2020', 'green')
+web_to_gcs('2019', 'yellow')
+web_to_gcs('2020', 'yellow')
 # web_to_gcs('2019', 'fhv')
 # web_to_gcs('2020', 'fhv')
 # web_to_gcs('2021', 'fhv')
