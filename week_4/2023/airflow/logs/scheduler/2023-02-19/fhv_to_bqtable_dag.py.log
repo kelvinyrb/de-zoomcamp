@@ -1,0 +1,216 @@
+[2023-02-19 12:40:13,957] {processor.py:163} INFO - Started process (PID=162) to work on /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:40:13,958] {processor.py:642} INFO - Processing file /opt/airflow/dags/fhv_to_bqtable_dag.py for tasks to queue
+[2023-02-19 12:40:13,960] {logging_mixin.py:109} INFO - [2023-02-19 12:40:13,959] {dagbag.py:500} INFO - Filling up the DagBag from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:40:15,968] {logging_mixin.py:109} INFO - [2023-02-19 12:40:15,965] {dagbag.py:334} ERROR - Failed to import: /opt/airflow/dags/fhv_to_bqtable_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 331, in _load_modules_from_file
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/fhv_to_bqtable_dag.py", line 51, in <module>
+    "sourceUris": [f"gs://{BUCKET}/{DATATYPE}_parquet/*"]
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 188, in apply_defaults
+    result = func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/google/cloud/operators/bigquery.py", line 1116, in __init__
+    super().__init__(**kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 188, in apply_defaults
+    result = func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 683, in __init__
+    self.dag = dag or DagContext.get_current_dag()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 789, in __setattr__
+    super().__setattr__(key, value)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 840, in dag
+    dag.add_task(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dag.py", line 2139, in add_task
+    raise AirflowException("Task is missing the start_date parameter")
+airflow.exceptions.AirflowException: Task is missing the start_date parameter
+[2023-02-19 12:40:15,983] {processor.py:656} WARNING - No viable dags retrieved from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:40:15,996] {processor.py:171} INFO - Processing /opt/airflow/dags/fhv_to_bqtable_dag.py took 2.042 seconds
+[2023-02-19 12:40:46,102] {processor.py:163} INFO - Started process (PID=203) to work on /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:40:46,105] {processor.py:642} INFO - Processing file /opt/airflow/dags/fhv_to_bqtable_dag.py for tasks to queue
+[2023-02-19 12:40:46,106] {logging_mixin.py:109} INFO - [2023-02-19 12:40:46,106] {dagbag.py:500} INFO - Filling up the DagBag from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:40:46,729] {logging_mixin.py:109} INFO - [2023-02-19 12:40:46,726] {dagbag.py:334} ERROR - Failed to import: /opt/airflow/dags/fhv_to_bqtable_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 331, in _load_modules_from_file
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/fhv_to_bqtable_dag.py", line 51, in <module>
+    "sourceUris": [f"gs://{BUCKET}/{DATATYPE}_parquet/*"]
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 188, in apply_defaults
+    result = func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/google/cloud/operators/bigquery.py", line 1116, in __init__
+    super().__init__(**kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 188, in apply_defaults
+    result = func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 683, in __init__
+    self.dag = dag or DagContext.get_current_dag()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 789, in __setattr__
+    super().__setattr__(key, value)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 840, in dag
+    dag.add_task(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dag.py", line 2139, in add_task
+    raise AirflowException("Task is missing the start_date parameter")
+airflow.exceptions.AirflowException: Task is missing the start_date parameter
+[2023-02-19 12:40:46,742] {processor.py:656} WARNING - No viable dags retrieved from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:40:46,749] {processor.py:171} INFO - Processing /opt/airflow/dags/fhv_to_bqtable_dag.py took 0.653 seconds
+[2023-02-19 12:41:05,158] {processor.py:163} INFO - Started process (PID=232) to work on /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:41:05,160] {processor.py:642} INFO - Processing file /opt/airflow/dags/fhv_to_bqtable_dag.py for tasks to queue
+[2023-02-19 12:41:05,161] {logging_mixin.py:109} INFO - [2023-02-19 12:41:05,160] {dagbag.py:500} INFO - Filling up the DagBag from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:41:05,824] {logging_mixin.py:109} INFO - [2023-02-19 12:41:05,819] {dagbag.py:334} ERROR - Failed to import: /opt/airflow/dags/fhv_to_bqtable_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 331, in _load_modules_from_file
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/fhv_to_bqtable_dag.py", line 49, in <module>
+    "sourceUris": [f"gs://{BUCKET}/{DATATYPE}_parquet/*"]
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 188, in apply_defaults
+    result = func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/google/cloud/operators/bigquery.py", line 1116, in __init__
+    super().__init__(**kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 188, in apply_defaults
+    result = func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 683, in __init__
+    self.dag = dag or DagContext.get_current_dag()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 789, in __setattr__
+    super().__setattr__(key, value)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 840, in dag
+    dag.add_task(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dag.py", line 2139, in add_task
+    raise AirflowException("Task is missing the start_date parameter")
+airflow.exceptions.AirflowException: Task is missing the start_date parameter
+[2023-02-19 12:41:05,843] {processor.py:656} WARNING - No viable dags retrieved from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:41:05,853] {processor.py:171} INFO - Processing /opt/airflow/dags/fhv_to_bqtable_dag.py took 0.699 seconds
+[2023-02-19 12:41:35,943] {processor.py:163} INFO - Started process (PID=262) to work on /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:41:35,947] {processor.py:642} INFO - Processing file /opt/airflow/dags/fhv_to_bqtable_dag.py for tasks to queue
+[2023-02-19 12:41:35,948] {logging_mixin.py:109} INFO - [2023-02-19 12:41:35,948] {dagbag.py:500} INFO - Filling up the DagBag from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:41:36,515] {logging_mixin.py:109} INFO - [2023-02-19 12:41:36,512] {dagbag.py:334} ERROR - Failed to import: /opt/airflow/dags/fhv_to_bqtable_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 331, in _load_modules_from_file
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/fhv_to_bqtable_dag.py", line 49, in <module>
+    "sourceUris": [f"gs://{BUCKET}/{DATATYPE}_parquet/*"]
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 188, in apply_defaults
+    result = func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/google/cloud/operators/bigquery.py", line 1116, in __init__
+    super().__init__(**kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 188, in apply_defaults
+    result = func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 683, in __init__
+    self.dag = dag or DagContext.get_current_dag()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 789, in __setattr__
+    super().__setattr__(key, value)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 840, in dag
+    dag.add_task(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dag.py", line 2139, in add_task
+    raise AirflowException("Task is missing the start_date parameter")
+airflow.exceptions.AirflowException: Task is missing the start_date parameter
+[2023-02-19 12:41:36,526] {processor.py:656} WARNING - No viable dags retrieved from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:41:36,532] {processor.py:171} INFO - Processing /opt/airflow/dags/fhv_to_bqtable_dag.py took 0.593 seconds
+[2023-02-19 12:42:06,646] {processor.py:163} INFO - Started process (PID=300) to work on /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:42:06,649] {processor.py:642} INFO - Processing file /opt/airflow/dags/fhv_to_bqtable_dag.py for tasks to queue
+[2023-02-19 12:42:06,650] {logging_mixin.py:109} INFO - [2023-02-19 12:42:06,650] {dagbag.py:500} INFO - Filling up the DagBag from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:42:07,260] {logging_mixin.py:109} INFO - [2023-02-19 12:42:07,257] {dagbag.py:334} ERROR - Failed to import: /opt/airflow/dags/fhv_to_bqtable_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 331, in _load_modules_from_file
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/fhv_to_bqtable_dag.py", line 49, in <module>
+    "sourceUris": [f"gs://{BUCKET}/{DATATYPE}_parquet/*"]
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 188, in apply_defaults
+    result = func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/google/cloud/operators/bigquery.py", line 1116, in __init__
+    super().__init__(**kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 188, in apply_defaults
+    result = func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 683, in __init__
+    self.dag = dag or DagContext.get_current_dag()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 789, in __setattr__
+    super().__setattr__(key, value)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/baseoperator.py", line 840, in dag
+    dag.add_task(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dag.py", line 2139, in add_task
+    raise AirflowException("Task is missing the start_date parameter")
+airflow.exceptions.AirflowException: Task is missing the start_date parameter
+[2023-02-19 12:42:07,289] {processor.py:656} WARNING - No viable dags retrieved from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:42:07,298] {processor.py:171} INFO - Processing /opt/airflow/dags/fhv_to_bqtable_dag.py took 0.657 seconds
+[2023-02-19 12:42:37,398] {processor.py:163} INFO - Started process (PID=331) to work on /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:42:37,400] {processor.py:642} INFO - Processing file /opt/airflow/dags/fhv_to_bqtable_dag.py for tasks to queue
+[2023-02-19 12:42:37,401] {logging_mixin.py:109} INFO - [2023-02-19 12:42:37,401] {dagbag.py:500} INFO - Filling up the DagBag from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:42:38,038] {processor.py:654} INFO - DAG(s) dict_keys(['fhv_to_bqtable_dag']) retrieved from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:42:38,595] {logging_mixin.py:109} INFO - [2023-02-19 12:42:38,595] {dag.py:2396} INFO - Sync 1 DAGs
+[2023-02-19 12:42:38,636] {processor.py:171} INFO - Processing /opt/airflow/dags/fhv_to_bqtable_dag.py took 1.242 seconds
+[2023-02-19 12:42:44,697] {processor.py:163} INFO - Started process (PID=359) to work on /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:42:44,699] {processor.py:642} INFO - Processing file /opt/airflow/dags/fhv_to_bqtable_dag.py for tasks to queue
+[2023-02-19 12:42:44,700] {logging_mixin.py:109} INFO - [2023-02-19 12:42:44,700] {dagbag.py:500} INFO - Filling up the DagBag from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:42:45,295] {processor.py:654} INFO - DAG(s) dict_keys(['fhv_to_bqtable_dag']) retrieved from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:42:45,302] {logging_mixin.py:109} INFO - [2023-02-19 12:42:45,301] {dag.py:2396} INFO - Sync 1 DAGs
+[2023-02-19 12:42:45,331] {logging_mixin.py:109} INFO - [2023-02-19 12:42:45,330] {dag.py:2935} INFO - Setting next_dagrun for fhv_to_bqtable_dag to 2023-02-19T00:00:00+00:00
+[2023-02-19 12:42:45,410] {processor.py:171} INFO - Processing /opt/airflow/dags/fhv_to_bqtable_dag.py took 0.716 seconds
+[2023-02-19 12:42:54,456] {processor.py:163} INFO - Started process (PID=379) to work on /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:42:54,458] {processor.py:642} INFO - Processing file /opt/airflow/dags/fhv_to_bqtable_dag.py for tasks to queue
+[2023-02-19 12:42:54,459] {logging_mixin.py:109} INFO - [2023-02-19 12:42:54,459] {dagbag.py:500} INFO - Filling up the DagBag from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:42:55,167] {processor.py:654} INFO - DAG(s) dict_keys(['fhv_to_bqtable_dag']) retrieved from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:42:55,172] {logging_mixin.py:109} INFO - [2023-02-19 12:42:55,172] {dag.py:2396} INFO - Sync 1 DAGs
+[2023-02-19 12:42:55,194] {logging_mixin.py:109} INFO - [2023-02-19 12:42:55,194] {dag.py:2935} INFO - Setting next_dagrun for fhv_to_bqtable_dag to 2023-02-19T00:00:00+00:00
+[2023-02-19 12:42:55,209] {processor.py:171} INFO - Processing /opt/airflow/dags/fhv_to_bqtable_dag.py took 0.757 seconds
+[2023-02-19 12:43:13,307] {processor.py:163} INFO - Started process (PID=399) to work on /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:43:13,309] {processor.py:642} INFO - Processing file /opt/airflow/dags/fhv_to_bqtable_dag.py for tasks to queue
+[2023-02-19 12:43:13,310] {logging_mixin.py:109} INFO - [2023-02-19 12:43:13,310] {dagbag.py:500} INFO - Filling up the DagBag from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:43:13,907] {processor.py:654} INFO - DAG(s) dict_keys(['fhv_to_bqtable_dag']) retrieved from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:43:14,168] {logging_mixin.py:109} INFO - [2023-02-19 12:43:14,168] {dag.py:2396} INFO - Sync 1 DAGs
+[2023-02-19 12:43:14,181] {logging_mixin.py:109} INFO - [2023-02-19 12:43:14,181] {dag.py:2935} INFO - Setting next_dagrun for fhv_to_bqtable_dag to 2023-02-19T00:00:00+00:00
+[2023-02-19 12:43:14,191] {processor.py:171} INFO - Processing /opt/airflow/dags/fhv_to_bqtable_dag.py took 0.888 seconds
+[2023-02-19 12:43:18,240] {processor.py:163} INFO - Started process (PID=419) to work on /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:43:18,242] {processor.py:642} INFO - Processing file /opt/airflow/dags/fhv_to_bqtable_dag.py for tasks to queue
+[2023-02-19 12:43:18,243] {logging_mixin.py:109} INFO - [2023-02-19 12:43:18,243] {dagbag.py:500} INFO - Filling up the DagBag from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:43:18,861] {processor.py:654} INFO - DAG(s) dict_keys(['fhv_to_bqtable_dag']) retrieved from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:43:18,865] {logging_mixin.py:109} INFO - [2023-02-19 12:43:18,865] {dag.py:2396} INFO - Sync 1 DAGs
+[2023-02-19 12:43:18,882] {logging_mixin.py:109} INFO - [2023-02-19 12:43:18,882] {dag.py:2935} INFO - Setting next_dagrun for fhv_to_bqtable_dag to 2023-02-19T00:00:00+00:00
+[2023-02-19 12:43:18,892] {processor.py:171} INFO - Processing /opt/airflow/dags/fhv_to_bqtable_dag.py took 0.655 seconds
+[2023-02-19 12:43:48,984] {processor.py:163} INFO - Started process (PID=456) to work on /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:43:48,987] {processor.py:642} INFO - Processing file /opt/airflow/dags/fhv_to_bqtable_dag.py for tasks to queue
+[2023-02-19 12:43:48,988] {logging_mixin.py:109} INFO - [2023-02-19 12:43:48,988] {dagbag.py:500} INFO - Filling up the DagBag from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:43:49,625] {processor.py:654} INFO - DAG(s) dict_keys(['fhv_to_bqtable_dag']) retrieved from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:43:49,646] {logging_mixin.py:109} INFO - [2023-02-19 12:43:49,645] {dag.py:2396} INFO - Sync 1 DAGs
+[2023-02-19 12:43:49,758] {logging_mixin.py:109} INFO - [2023-02-19 12:43:49,758] {dag.py:2935} INFO - Setting next_dagrun for fhv_to_bqtable_dag to 2023-02-19T00:00:00+00:00
+[2023-02-19 12:43:49,769] {processor.py:171} INFO - Processing /opt/airflow/dags/fhv_to_bqtable_dag.py took 0.810 seconds
+[2023-02-19 12:44:19,822] {processor.py:163} INFO - Started process (PID=496) to work on /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:44:19,824] {processor.py:642} INFO - Processing file /opt/airflow/dags/fhv_to_bqtable_dag.py for tasks to queue
+[2023-02-19 12:44:19,825] {logging_mixin.py:109} INFO - [2023-02-19 12:44:19,825] {dagbag.py:500} INFO - Filling up the DagBag from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:44:20,419] {processor.py:654} INFO - DAG(s) dict_keys(['fhv_to_bqtable_dag']) retrieved from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:44:20,427] {logging_mixin.py:109} INFO - [2023-02-19 12:44:20,427] {dag.py:2396} INFO - Sync 1 DAGs
+[2023-02-19 12:44:20,494] {logging_mixin.py:109} INFO - [2023-02-19 12:44:20,494] {dag.py:2935} INFO - Setting next_dagrun for fhv_to_bqtable_dag to 2023-02-19T00:00:00+00:00
+[2023-02-19 12:44:20,504] {processor.py:171} INFO - Processing /opt/airflow/dags/fhv_to_bqtable_dag.py took 0.685 seconds
+[2023-02-19 12:44:34,590] {processor.py:163} INFO - Started process (PID=516) to work on /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:44:34,592] {processor.py:642} INFO - Processing file /opt/airflow/dags/fhv_to_bqtable_dag.py for tasks to queue
+[2023-02-19 12:44:34,593] {logging_mixin.py:109} INFO - [2023-02-19 12:44:34,593] {dagbag.py:500} INFO - Filling up the DagBag from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:44:35,210] {processor.py:654} INFO - DAG(s) dict_keys(['fhv_to_bqtable_dag']) retrieved from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:44:35,218] {logging_mixin.py:109} INFO - [2023-02-19 12:44:35,218] {dag.py:2396} INFO - Sync 1 DAGs
+[2023-02-19 12:44:35,285] {logging_mixin.py:109} INFO - [2023-02-19 12:44:35,285] {dag.py:2935} INFO - Setting next_dagrun for fhv_to_bqtable_dag to 2023-02-19T00:00:00+00:00
+[2023-02-19 12:44:35,296] {processor.py:171} INFO - Processing /opt/airflow/dags/fhv_to_bqtable_dag.py took 0.710 seconds
+[2023-02-19 12:45:05,403] {processor.py:163} INFO - Started process (PID=555) to work on /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:45:05,405] {processor.py:642} INFO - Processing file /opt/airflow/dags/fhv_to_bqtable_dag.py for tasks to queue
+[2023-02-19 12:45:05,406] {logging_mixin.py:109} INFO - [2023-02-19 12:45:05,406] {dagbag.py:500} INFO - Filling up the DagBag from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:45:06,032] {processor.py:654} INFO - DAG(s) dict_keys(['fhv_to_bqtable_dag']) retrieved from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:45:06,114] {logging_mixin.py:109} INFO - [2023-02-19 12:45:06,113] {dag.py:2396} INFO - Sync 1 DAGs
+[2023-02-19 12:45:06,131] {logging_mixin.py:109} INFO - [2023-02-19 12:45:06,131] {dag.py:2935} INFO - Setting next_dagrun for fhv_to_bqtable_dag to 2023-02-19T00:00:00+00:00
+[2023-02-19 12:45:06,139] {processor.py:171} INFO - Processing /opt/airflow/dags/fhv_to_bqtable_dag.py took 0.739 seconds
+[2023-02-19 12:45:36,202] {processor.py:163} INFO - Started process (PID=584) to work on /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:45:36,204] {processor.py:642} INFO - Processing file /opt/airflow/dags/fhv_to_bqtable_dag.py for tasks to queue
+[2023-02-19 12:45:36,206] {logging_mixin.py:109} INFO - [2023-02-19 12:45:36,205] {dagbag.py:500} INFO - Filling up the DagBag from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:45:36,793] {processor.py:654} INFO - DAG(s) dict_keys(['fhv_to_bqtable_dag']) retrieved from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:45:36,860] {logging_mixin.py:109} INFO - [2023-02-19 12:45:36,859] {dag.py:2396} INFO - Sync 1 DAGs
+[2023-02-19 12:45:36,876] {logging_mixin.py:109} INFO - [2023-02-19 12:45:36,876] {dag.py:2935} INFO - Setting next_dagrun for fhv_to_bqtable_dag to 2023-02-19T00:00:00+00:00
+[2023-02-19 12:45:36,886] {processor.py:171} INFO - Processing /opt/airflow/dags/fhv_to_bqtable_dag.py took 0.687 seconds
+[2023-02-19 12:46:07,002] {processor.py:163} INFO - Started process (PID=622) to work on /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:46:07,004] {processor.py:642} INFO - Processing file /opt/airflow/dags/fhv_to_bqtable_dag.py for tasks to queue
+[2023-02-19 12:46:07,005] {logging_mixin.py:109} INFO - [2023-02-19 12:46:07,005] {dagbag.py:500} INFO - Filling up the DagBag from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:46:07,628] {processor.py:654} INFO - DAG(s) dict_keys(['fhv_to_bqtable_dag']) retrieved from /opt/airflow/dags/fhv_to_bqtable_dag.py
+[2023-02-19 12:46:07,638] {logging_mixin.py:109} INFO - [2023-02-19 12:46:07,637] {dag.py:2396} INFO - Sync 1 DAGs
+[2023-02-19 12:46:07,652] {logging_mixin.py:109} INFO - [2023-02-19 12:46:07,652] {dag.py:2935} INFO - Setting next_dagrun for fhv_to_bqtable_dag to 2023-02-19T00:00:00+00:00
+[2023-02-19 12:46:07,661] {processor.py:171} INFO - Processing /opt/airflow/dags/fhv_to_bqtable_dag.py took 0.663 seconds
