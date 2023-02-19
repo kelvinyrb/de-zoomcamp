@@ -32,6 +32,12 @@ clean-targets:         # directories to be removed by `dbt clean`
 # In this example config, we tell dbt to build all models in the example/ directory
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
+
+# Set the schema parameter to hardcode the dataset location
+# config:
+#   BigQuery:
+#     schema: dbt_nytaxi_2019-2020
+
 models:
   dbt_project:
       # Applies to all files under models/.../

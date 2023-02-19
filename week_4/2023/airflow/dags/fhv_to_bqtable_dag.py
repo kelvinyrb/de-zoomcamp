@@ -42,8 +42,19 @@ with DAG(
             "externalDataConfiguration": {
                 "autodetect": "True",
                 "sourceFormat": f"{INPUT_FILETYPE.upper()}",
-                "sourceUris": [f"gs://{BUCKET}/{DATATYPE}_parquet/*"]
+                "sourceUris": [f"gs://{BUCKET}/{DATATYPE}_parquet/*"],
+                "schema": {
+                    "fields": [
+                        {"name": "dispatching_base_num", "type": "STRING"},
+                        {"name": "pickup_datetime", "type": "TIMESTAMP"},
+                        {"name": "dropoff_datetime", "type": "TIMESTAMP"},
+                        {"name": "PUlocationID", "type": "INTEGER"},
+                        {"name": "DOlocationID", "type": "INTEGER"},
+                        {"name": "SRFlag", "type": "INTEGER"},
+                        {"name": "Affiliated_base_number", "type": "STRING"}
+                            ]
+                        },
             },
-        },
-    )
+                        },
+            )      
     bigquery_external_table_task

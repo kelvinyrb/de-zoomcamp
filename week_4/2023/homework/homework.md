@@ -16,6 +16,13 @@ only if you want to.
 
 ### Question 1: 
 
+- Run web_to_gcs.py to get fhv trip data files as parquet and upload to gcs folder
+- Run airflow dag to get parquet files in gcs and write as external bq table
+- Go to GCS and edit the Metadata for each paqrquet files from application/parquet to application/octet-stream
+1. Go to cloud.getdbt.com
+2. Set project directory to week_4/2023/homework
+3. dbt build --select +fact_fhv_trips --var "is_test_run: false"
+
 **What is the count of records in the model fact_trips after running all models with the test run variable disabled and filtering for 2019 and 2020 data only (pickup datetime)** 
 
 You'll need to have completed the "Build the first dbt models" video and have been able to run the models via the CLI. 

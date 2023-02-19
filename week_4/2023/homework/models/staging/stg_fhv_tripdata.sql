@@ -9,7 +9,7 @@ select
     cast(DOlocationID as integer) as DOlocationID,
     -- cast(SR_Flag as integer) as SR_Flag,
     cast(Affiliated_base_number as string) as Affiliated_base_number,
-from {{ source('staging','fhv_tripdata_2019_2020') }}
+from {{ source('staging','fhv_tripdata_2019_2020_table') }}
 
 -- dbt build --m <model.sql> --var 'is_test_run: false'
 {% if var('is_test_run', default=true) %}
