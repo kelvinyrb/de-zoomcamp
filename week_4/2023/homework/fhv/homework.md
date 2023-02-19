@@ -16,23 +16,59 @@ only if you want to.
 
 ### Question 1: 
 
-- Run web_to_gcs.py to get fhv trip data files as parquet and upload to gcs folder
-- Run airflow dag to get parquet files in gcs and write as external bq table
-- Go to GCS and edit the Metadata for each paqrquet files from application/parquet to application/octet-stream
-1. Go to cloud.getdbt.com
-2. Set project directory to week_4/2023/homework
-3. dbt build --select +fact_fhv_trips --var "is_test_run: false"
-
 **What is the count of records in the model fact_trips after running all models with the test run variable disabled and filtering for 2019 and 2020 data only (pickup datetime)** 
 
 You'll need to have completed the "Build the first dbt models" video and have been able to run the models via the CLI. 
 You should find the views and models for querying in your DWH.
+
+``` sql
+-- Create external table from gcs data (yellow)
+CREATE OR REPLACE EXTERNAL TABLE ny-rides-kelvin.trips_data_all.yellow_tripdata_2019_2020
+OPTIONS(
+  format = 'parquet',
+  uris = ['gs://dtc_data_lake_ny-rides-kelvin/yellow_parquet/*']
+);
+``` 
+``` sql
+-- Create external table from gcs data (green)
+CREATE OR REPLACE EXTERNAL TABLE ny-rides-kelvin.trips_data_all.green_tripdata_2019_2020
+OPTIONS(
+  format = 'parquet',
+  uris = ['gs://dtc_data_lake_ny-rides-kelvin/green_parquet/*']
+);
+``` 
+``` sql
+-- Create table from external table (yellow)
+CREATE OR REPLACE TABLE ny-rides-kelvin.trips_data_all.yellow_tripdata_2019_2020_table AS
+SELECT * FROM ny-rides-kelvin.trips_data_all.yellow_tripdata_2019_2020;
+```
+``` sql
+-- Create table from external table (green)
+CREATE OR REPLACE TABLE ny-rides-kelvin.trips_data_all.green_tripdata_2019_2020_table AS
+SELECT * FROM ny-rides-kelvin.trips_data_all.green_tripdata_2019_2020;
+```
+
+1. Go to `cloud.getdbt.com`
+2. Set project directory to week_4/2023/homework/greenyellow
+3. dbt build --select +fact_trips --var "is_test_run: false"
+``` sql
+SELECT
+EXTRACT(YEAR FROM pickup_datetime),
+COUNT(pickup_datetime)
+FROM `ny-rides-kelvin.dbt_nytaxi.fact_trips`
+WHERE
+EXTRACT(YEAR FROM pickup_datetime) = 2019 OR
+EXTRACT(YEAR FROM pickup_datetime) = 2020
+GROUP BY EXTRACT(YEAR FROM pickup_datetime)
+LIMIT 10
+```
 
 - 41648442
 - 51648442
 - 61648442
 - 71648442
 
+Ans: 
 
 ### Question 2: 
 
@@ -45,6 +81,7 @@ You will need to complete "Visualising the data" videos, either using data studi
 - 76.3/23.7
 - 99.1/0.9
 
+Ans: 
 
 
 ### Question 3: 
@@ -54,11 +91,34 @@ You will need to complete "Visualising the data" videos, either using data studi
 Create a staging model for the fhv data for 2019 and do not add a deduplication step. Run it via the CLI without limits (is_test_run: false).
 Filter records with pickup time in year 2019.
 
+- Run web_to_gcs.py to get fhv trip data files as parquet and upload to gcs folder
+``` sql
+-- Create external table from gcs data
+CREATE OR REPLACE EXTERNAL TABLE ny-rides-kelvin.trips_data_all.fhv_tripdata_2019_2020
+  format = 'parquet',
+  uris = ['gs://dtc_data_lake_ny-rides-kelvin/fhv_parquet/*']
+);
+``` 
+
+``` sql
+-- Create table from external table
+CREATE OR REPLACE TABLE ny-rides-kelvin.trips_data_all.fhv_tripdata_2019_2020_table AS
+SELECT * FROM ny-rides-kelvin.trips_data_all.fhv_tripdata_2019_2020;
+```
+
+`dbt build --select stg_fhv_tripdata --var "is_test_run: false"`
+``` sql
+SELECT COUNT(pickup_datetime)
+FROM `ny-rides-kelvin.dbt_nytaxi.stg_fhv_tripdata`
+WHERE EXTRACT(YEAR FROM pickup_datetime) = 2019
+```
+
 - 33244696
 - 43244696
 - 53244696
 - 63244696
 
+Ans: 43244696
 
 ### Question 4: 
 
@@ -68,10 +128,14 @@ Create a core model for the stg_fhv_tripdata joining with dim_zones.
 Similar to what we've done in fact_trips, keep only records with known pickup and dropoff locations entries for pickup and dropoff locations. 
 Run it via the CLI without limits (is_test_run: false) and filter records with pickup time in year 2019.
 
+`dbt build --select +fact_fhv_trips --var "is_test_run: false"`
+
 - 12998722
 - 22998722
 - 32998722
 - 42998722
+
+Ans: 22998722
 
 ### Question 5: 
 
@@ -83,7 +147,18 @@ Create a dashboard with some tiles that you find interesting to explore the data
 - January
 - December
 
+Check with SQL: 
+```sql 
+SELECT
+EXTRACT(MONTH FROM pickup_datetime) as month,
+COUNT(EXTRACT(MONTH FROM pickup_datetime))
+FROM `ny-rides-kelvin.dbt_nytaxi.fact_fhv_trips`
+WHERE EXTRACT(YEAR FROM pickup_datetime) = 2019
+GROUP BY month
+ORDER BY month ASC
+```
 
+Ans: January
 
 ## Submitting the solutions
 
