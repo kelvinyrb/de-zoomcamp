@@ -15,7 +15,7 @@ Pre-reqs:
 """
 
 # services = ['fhv','green','yellow']
-init_url = 'https://github.com/DataTalksClub/nyc-tlc-data/releases/download/fhv/'
+init_url = 'https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/'
 
 # switch out the bucketname
 BUCKET = os.environ.get("GCP_GCS_BUCKET", "dtc_data_lake_ny-rides-kelvin")
@@ -46,41 +46,42 @@ def web_to_gcs(year, service):
         # csv.gz  file_name 
         file_name = service + '_tripdata_' + year + '-' + month + '.csv.gz'
         
-        # # download csv.gz file
-        # request_url = init_url + file_name
-        # urllib.request.urlretrieve(request_url, '..//data/' + file_name)
+        # download csv.gz file
+        request_url = init_url + file_name
+        print(request_url)
+        urllib.request.urlretrieve(request_url, '../data/' + file_name)
         
         # read it back into a parquet file
         if file_name == 'fhv_tripdata_2020-02.csv.gz':
-            df = pd.read_csv('..//data/' + file_name, encoding='latin1')
+            df = pd.read_csv('../data/' + file_name, encoding='latin1')
         else:
-            df = pd.read_csv('..//data/' + file_name)
+            df = pd.read_csv('../data/' + file_name)
             
-        # Define schema for parquet file
-        if year == '2019':
-            schema = pa.schema([
-                pa.field('dispatching_base_num', pa.string()),
-                pa.field('pickup_datetime', pa.string()),
-                pa.field('dropOff_datetime', pa.string()),
-                pa.field('PUlocationID', pa.int64()),
-                pa.field('DOlocationID', pa.int64()),
-                pa.field('SR_Flag', pa.int64()),
-                pa.field('Affiliated_base_number', pa.string())
-        ])
+        # # Define schema for parquet file
+        # if year == '2019':
+        #     schema = pa.schema([
+        #         pa.field('dispatching_base_num', pa.string()),
+        #         pa.field('pickup_datetime', pa.string()),
+        #         pa.field('dropOff_datetime', pa.string()),
+        #         pa.field('PUlocationID', pa.int64()),
+        #         pa.field('DOlocationID', pa.int64()),
+        #         pa.field('SR_Flag', pa.int64()),
+        #         pa.field('Affiliated_base_number', pa.string())
+        # ])
         
-        elif year == '2020':
-            schema = pa.schema([
-                pa.field('dispatching_base_num', pa.string()),
-                pa.field('pickup_datetime', pa.string()),
-                pa.field('dropoff_datetime', pa.string()),
-                pa.field('PULocationID', pa.int64()),
-                pa.field('DOLocationID', pa.int64()),
-                pa.field('SR_Flag', pa.int64()),
-                pa.field('Affiliated_base_number', pa.string())
-        ])
+        # elif year == '2020':
+        #     schema = pa.schema([
+        #         pa.field('dispatching_base_num', pa.string()),
+        #         pa.field('pickup_datetime', pa.string()),
+        #         pa.field('dropoff_datetime', pa.string()),
+        #         pa.field('PULocationID', pa.int64()),
+        #         pa.field('DOLocationID', pa.int64()),
+        #         pa.field('SR_Flag', pa.int64()),
+        #         pa.field('Affiliated_base_number', pa.string())
+        # ])
 
         file_name = file_name.replace('.csv.gz', '.parquet')
-        df.to_parquet('..//data/' + file_name, engine='pyarrow', schema=schema)
+        df.to_parquet('..//data/' + file_name, engine='pyarrow')
         print(f"Parquet: {file_name}")
 
         # upload it to gcs 
@@ -88,10 +89,10 @@ def web_to_gcs(year, service):
         print(f"GCS: {service}_parquet/{file_name}")
 
 
-# web_to_gcs('2019', 'green')
-# web_to_gcs('2020', 'green')
+web_to_gcs('2019', 'green')
+web_to_gcs('2020', 'green')
 # web_to_gcs('2019', 'yellow')
 # web_to_gcs('2020', 'yellow')
 # web_to_gcs('2019', 'fhv')
-web_to_gcs('2020', 'fhv')
+# web_to_gcs('2020', 'fhv')
 # web_to_gcs('2021', 'fhv')
