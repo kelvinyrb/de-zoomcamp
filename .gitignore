@@ -1,3 +1,4 @@
+**/.DS_Store
 week_2/airflow/logs
 week_2/prefect/flows/04_homework/*.parquet
 week_3/2022/airflow/logs
